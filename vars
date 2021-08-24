@@ -1,0 +1,19 @@
+set_var EASYRSA                 "$PWD"
+set_var EASYRSA_DN		"org"
+set_var EASYRSA_REQ_COUNTRY     "DE" 
+set_var EASYRSA_REQ_PROVINCE    "xxx" 
+set_var EASYRSA_REQ_CITY        "xxx" 
+set_var EASYRSA_REQ_ORG         "xxx"
+set_var EASYRSA_REQ_EMAIL       "xx@xxx.de" 
+set_var EASYRSA_REQ_OU          "xxx"
+set_var EASYRSA_KEY_SIZE        4096 
+set_var EASYRSA_ALGO            rsa 
+set_var EASYRSA_CA_EXPIRE       10950 
+set_var EASYRSA_CERT_EXPIRE     5475 
+set_var EASYRSA_CRL_DAYS	5475
+set_var EASYRSA_CERT_RENEW	30
+set_var EASYRSA_NS_SUPPORT      "no" 
+set_var EASYRSA_NS_COMMENT      "My Root CA" 
+set_var EASYRSA_EXT_DIR         "$EASYRSA/x509-types" 
+set_var EASYRSA_SSL_CONF        "$EASYRSA/openssl-easyrsa.cnf" 
+set_var EASYRSA_DIGEST          "sha256" 
