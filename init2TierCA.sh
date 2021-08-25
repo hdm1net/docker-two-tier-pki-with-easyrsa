@@ -27,7 +27,7 @@ docker run -it --rm --network=none -e EASYRSA_PKI_NAME=RootCA -v $(pwd)/pki:/eas
 
 
 # Transport IssuingCA Cert to IssuingCA
-cp ./pki/RootCA/issued/SubCA.crt ./pki/IssuingCA/ca.crt
+cp ./pki/RootCA/issued/IssuingCA.crt ./pki/IssuingCA/ca.crt
 
 
 echo.
