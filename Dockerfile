@@ -1,7 +1,5 @@
 FROM alpine
 
-LABEL maintainer="hd@hd-m1-net.de"
-
 # Default PKI-Name
 ENV EASYRSA_PKI_NAME="pki"
 
