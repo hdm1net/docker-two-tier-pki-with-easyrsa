@@ -4,17 +4,17 @@ if [ ! -d ./pki ]; then
    mkdir ./pki
 fi
 
+
 # Create Root CA
-docker run -it --rm --network=none -e EASYRSA_PKI_NAME=RootCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa init-pki
-docker run -it --rm --network=none -e EASYRSA_PKI_NAME=RootCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa build-ca
-docker run -it --rm --network=none -e EASYRSA_PKI_NAME=RootCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa gen-dh
-docker run -it --rm --network=none -e EASYRSA_PKI_NAME=RootCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa gen-crl
+if [ ! -d ./pki/RootCA ]; then
+   ./initRootCA.sh
+fi
 
 
 # Create Issuing CA
 docker run -it --rm --network=none -e EASYRSA_PKI_NAME=IssuingCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa init-pki
-docker run -it --rm --network=none -e EASYRSA_PKI_NAME=IssuingCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa build-ca issuingca
-docker run -it --rm --network=none -e EASYRSA_PKI_NAME=IssuingCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa gen-dh
+docker run -it --rm --network=none -e EASYRSA_PKI_NAME=IssuingCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa build-ca subca
+#docker run -it --rm --network=none -e EASYRSA_PKI_NAME=IssuingCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa gen-dh
 docker run -it --rm --network=none -e EASYRSA_PKI_NAME=IssuingCA -v $(pwd)/pki:/easy-rsa hdm1net/easy-rsa gen-crl
 
 
@@ -30,5 +30,4 @@ docker run -it --rm --network=none -e EASYRSA_PKI_NAME=RootCA -v $(pwd)/pki:/eas
 cp ./pki/RootCA/issued/IssuingCA.crt ./pki/IssuingCA/ca.crt
 
 
-echo.
-echo 2-Tier-Certificate Authority (CA) created
+echo 2-Tier-Certificate Authority \(CA\) created
